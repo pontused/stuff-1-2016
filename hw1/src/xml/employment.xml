@@ -1,0 +1,42 @@
+<person:personemployments
+        xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xmlns:person ='http://www.personemployments.com'
+        xmlns:emp = 'http://www.employment.com'
+        xsi:schemaLocation='http://www.personemployments.com schemas/personemployments.xsd'>
+
+    <person:person>
+        <person:firstname>Peter</person:firstname>
+        <person:lastname>Ledberg</person:lastname>
+        <person:ssn>8003456378</person:ssn>
+        <person:workhistory>
+            <person:companyName>IBM</person:companyName>
+            <person:orgNumber>123456</person:orgNumber>
+            <person:employmentRole>Support</person:employmentRole>
+            <person:startDate>2012-02-13</person:startDate>
+            <person:endDate>2012-02-13</person:endDate>
+        </person:workhistory>
+        <person:workhistory>
+            <person:companyName>KTH</person:companyName>
+            <person:orgNumber>094934</person:orgNumber>
+            <person:employmentRole>Support</person:employmentRole>
+            <person:startDate>2012-02-13</person:startDate>
+            <person:endDate>2012-02-13</person:endDate>
+        </person:workhistory>
+    </person:person>
+
+
+
+   <person:person>
+       <person:firstname>Kristina</person:firstname>
+       <person:lastname>Svensson</person:lastname>
+       <person:ssn>7043423423</person:ssn>
+       <person:workhistory>
+           <person:companyName>KTH</person:companyName>
+           <person:orgNumber>094934</person:orgNumber>
+           <person:employmentRole>asd</person:employmentRole>
+           <person:startDate>2012-02-13</person:startDate>
+           <person:endDate>2012-02-13</person:endDate>
+       </person:workhistory>
+   </person:person>
+
+</person:personemployments>
