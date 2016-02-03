@@ -21,7 +21,7 @@ public class XslTransformer {
         Source xslSource = new StreamSource("src/TranscriptTransformation.xsl");
         try{
             Transformer transformer = tFactory.newTransformer(xslSource);
-
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             FileOutputStream fos = new FileOutputStream("src/xml/Transcript_output.xml");
 
 

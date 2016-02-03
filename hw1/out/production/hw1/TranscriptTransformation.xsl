@@ -48,12 +48,11 @@
 						<xsl:value-of select="/transcript:persontranscript/transcript:person/transcript:program/transcript:finishDate"/>
 					</xsl:element> 
 				</xsl:element> 
-				<!--
-				degree måste vara sifror inte bokstäver
+
 				<xsl:element name="gpa">
 					<xsl:value-of select="sum(/transcript:persontranscript/transcript:person/transcript:program/transcript:course/transcript:degree) div count(/transcript:persontranscript/transcript:person/transcript:program/transcript:course/transcript:degree)"/>
 				</xsl:element> 
-				-->
+
 			</xsl:element>
 		</xsl:element>
 	</xsl:template>

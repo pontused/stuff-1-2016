@@ -13,14 +13,14 @@
             <transcript:course>
                 <transcript:courseName>Webservices</transcript:courseName>
                 <transcript:courseNumber>ID2208</transcript:courseNumber>
-                <transcript:degree>A</transcript:degree>
+                <transcript:degree>5</transcript:degree>
                 <transcript:startDate>2016-01-18</transcript:startDate>
                 <transcript:finishedDate>2016-03-15</transcript:finishedDate>
             </transcript:course>
             <transcript:course>
                 <transcript:courseName>Distributed Systems, Advanced Course</transcript:courseName>
                 <transcript:courseNumber>ID2203</transcript:courseNumber>
-                <transcript:degree>A</transcript:degree>
+                <transcript:degree>4</transcript:degree>
                 <transcript:startDate>2016-01-18</transcript:startDate>
                 <transcript:finishedDate>2016-03-15</transcript:finishedDate>
             </transcript:course>

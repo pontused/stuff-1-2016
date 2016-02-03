@@ -36,6 +36,9 @@ public class DomApp {
 
         factory.setAttribute("http://java.sun.com/xml/jaxp/properties/schemaLanguage","http://www.w3.org/2001/XMLSchema");
 
+        // XSL Transformation
+        XslTransformer xt = new XslTransformer();
+        xt.start();
 
         // DOM parsing
         educationRecords = parseEducationRecords(factory, "src/xml/transcript.xml" , "schemas/persontranscript.xsd");
@@ -46,6 +49,9 @@ public class DomApp {
 
         employmentRecords = parseEmploymentRecords(factory, "src/xml/employment.xml", "schemas/personemployments.xsd");
 
+        // JAXB parsing
+        JAXBParser jaxbp = new JAXBParser();
+        jaxbp.start();
 
 
 
