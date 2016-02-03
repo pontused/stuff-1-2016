@@ -9,28 +9,36 @@ import java.io.FileOutputStream;
  * Created by Pontus on 2016-02-03.
  */
 public class XslTransformer {
+    Source xslSource;
+    Source ss;
+    FileOutputStream fos;
 
     public static void main(String[] args){
-        XslTransformer xsltr = new XslTransformer();
+        XslTransformer xsltr = new XslTransformer("src/TranscriptTransformation.xsl","src/xml/Transcript.xml","src/xml/Transcript_output.xml");
         xsltr.start();
+    }
+
+    public XslTransformer(String transformation, String input, String output){
+        xslSource = new StreamSource(transformation);
+        try {
+            ss = new StreamSource(input);
+            fos = new FileOutputStream(output);
+
+        }catch(FileNotFoundException fnfe){
+
+        }
     }
 
     public void start(){
         TransformerFactory tFactory = TransformerFactory.newInstance();
 
-        Source xslSource = new StreamSource("src/TranscriptTransformation.xsl");
         try{
             Transformer transformer = tFactory.newTransformer(xslSource);
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            FileOutputStream fos = new FileOutputStream("src/xml/Transcript_output.xml");
-
-
-            transformer.transform(new StreamSource("src/xml/Transcript.xml"), new StreamResult(fos));
+            transformer.transform(ss, new StreamResult(fos));
         }catch(TransformerConfigurationException tce){
 
         }catch(TransformerException te){
-
-        }catch(FileNotFoundException fnfe){
 
         }
 

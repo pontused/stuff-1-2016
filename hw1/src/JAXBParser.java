@@ -12,8 +12,19 @@ import java.io.FileNotFoundException;
  * Created by Pontus on 2016-02-03.
  */
 public class JAXBParser {
+
+    FileInputStream fis;
+
+    public JAXBParser(String path){
+        try{
+            fis = new FileInputStream(path);
+        }catch(FileNotFoundException e){
+            System.out.print("FileNotFoundException: " + e.getMessage());
+        }
+    }
+
     public static void main(String[] args){
-        JAXBParser jaxbp = new JAXBParser();
+        JAXBParser jaxbp = new JAXBParser("src/xml/shortcv.xml");
         jaxbp.start();
     }
 
@@ -21,7 +32,7 @@ public class JAXBParser {
 
         try{
             final JAXBContext jaxbContext = JAXBContext.newInstance(com.shortcv.ObjectFactory.class);
-            FileInputStream fis = new FileInputStream("src/xml/shortcv.xml");
+
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             JAXBElement<Cv> jaxbel =  (JAXBElement<Cv>)jaxbUnmarshaller.unmarshal(fis);
 
@@ -32,10 +43,8 @@ public class JAXBParser {
                 System.out.println(cv.getGender());
             }
 
-        }catch(JAXBException e){
+        }catch(JAXBException e) {
             System.out.print("JAXBException: " + e.getMessage());
-        }catch(FileNotFoundException e){
-            System.out.print("FileNotFoundException: " + e.getMessage());
         }
 
     }
