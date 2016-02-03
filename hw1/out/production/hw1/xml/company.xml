@@ -1,0 +1,14 @@
+<company:companyinfo
+        xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xmlns:company ='http://www.companyinfo.com'
+        xsi:schemaLocation='http://www.companyinfo.com schemas/companyinfo.xsd'>
+
+    <company:company>
+        <company:companyName>KTH</company:companyName>
+        <company:orgNumber>094934</company:orgNumber>
+        <company:address>dasdsa</company:address>
+        <company:city>Stockholm</company:city>
+        <company:country>Sweden</company:country>
+    </company:company>
+    
+</company:companyinfo>

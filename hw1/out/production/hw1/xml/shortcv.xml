@@ -1,0 +1,12 @@
+<cv:shortcv
+        xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xmlns:cv ='http://www.shortcv.com'
+        xsi:schemaLocation='http://www.shortcv.com schemas/shortcv.xsd'>
+
+    <cv:cv>
+        <cv:firstname>Peter</cv:firstname>
+        <cv:lastname>Ledberg</cv:lastname>
+        <cv:ssn>8003456378</cv:ssn>
+        <cv:gender>male</cv:gender>
+    </cv:cv>
+</cv:shortcv>

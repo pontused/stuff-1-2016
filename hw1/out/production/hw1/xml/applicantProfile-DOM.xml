@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<applicatprofile>
+<firstname>Peter</firstname>
+<lastname>Ledberg</lastname>
+<ssn>8003456378</ssn>
+<program>
+<programName>Distributed systems</programName>
+<universityName>KTH</universityName>
+<course>
+<courseName>Webservices</courseName>
+<courseNumber>ID2208</courseNumber>
+<degree>A</degree>
+<startDate>2016-01-18</startDate>
+<finishedDate>2016-03-15</finishedDate>
+</course>
+<course>
+<courseName>Distributed Systems, Advanced Course</courseName>
+<courseNumber>ID2203</courseNumber>
+<degree>A</degree>
+<startDate>2016-01-18</startDate>
+<finishedDate>2016-03-15</finishedDate>
+</course>
+</program>
+<workhistory>
+<companyName>IBM</companyName>
+<orgNumber>123456</orgNumber>
+<employmentRole>Support</employmentRole>
+<startDate>2012-02-13</startDate>
+<endDate>2012-02-13</endDate>
+</workhistory>
+<workhistory>
+<companyName>KTH</companyName>
+<orgNumber>094934</orgNumber>
+<employmentRole>Support</employmentRole>
+<startDate>2012-02-13</startDate>
+<endDate>2012-02-13</endDate>
+</workhistory>
+</applicatprofile>

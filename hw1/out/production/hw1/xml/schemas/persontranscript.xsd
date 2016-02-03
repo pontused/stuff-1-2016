@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.persontranscript.com"
+           xmlns="http://www.persontranscript.com"
+            elementFormDefault="qualified">
+
+
+    <xsd:element name="persontranscript" type="person"/>
+
+    <xsd:complexType name="person">
+        <xsd:sequence>
+            <xsd:element name="person" type="personObject" minOccurs="0" maxOccurs="unbounded" />
+
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="personObject">
+        <xsd:sequence>
+            <xsd:element name="firstname" >
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:pattern value="[a-öA-Ö]*"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="lastname" >
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:pattern value="[a-öA-Ö]*"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="ssn" >
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:pattern value="[0-9]{10}"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="program" type="schoolprogram" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="schoolprogram">
+        <xsd:sequence>
+            <xsd:element name="programName" type="xsd:string"/>
+            <xsd:element name="universityName" type="xsd:string"/>
+            <xsd:element name="course" type="courseTranscript" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="startDate" type="xsd:date"/>
+            <xsd:element name="finishDate" type="xsd:date"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="courseTranscript">
+        <xsd:sequence>
+            <xsd:element name="courseName" type="xsd:string"/>
+            <xsd:element name="courseNumber" >
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:pattern value="[A-Z]{2}[0-9]{4}"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="degree" type="xsd:string"/>
+            <xsd:element name="startDate" type="xsd:date"/>
+            <xsd:element name="finishedDate" type="xsd:date"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+
+</xsd:schema>
