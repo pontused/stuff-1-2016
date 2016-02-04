@@ -296,8 +296,8 @@ public class DomApp {
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser saxParser = factory.newSAXParser();
             CompanyInfoContainer container = new CompanyInfoContainer();
-            EducationHandler educationHandler = new EducationHandler(container);
-            saxParser.parse(inputFile, educationHandler);
+            CompanyInfoHandler companyInfoHandler = new CompanyInfoHandler(container);
+            saxParser.parse(inputFile, companyInfoHandler);
             companyInfos = container.getCompanies();
 
         } catch (Exception e) {

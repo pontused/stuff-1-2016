@@ -10,14 +10,14 @@ import java.util.ArrayList;
 /**
  * Created by peter on 1/25/16.
  */
-public class EducationHandler extends DefaultHandler {
+public class CompanyInfoHandler extends DefaultHandler {
 
 
     private CompanyInfoContainer companies;
 
 
 
-    public EducationHandler(CompanyInfoContainer companies){
+    public CompanyInfoHandler(CompanyInfoContainer companies){
         this.companies = companies;
     }
 
