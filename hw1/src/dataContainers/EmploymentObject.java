@@ -5,7 +5,7 @@ package dataContainers;
  */
 public class EmploymentObject {
     private String companyName,orgNumber,employmentRole;
-    private javax.xml.datatype.XMLGregorianCalendar startDate,endDate;
+    private String startDate,endDate;
     public String getCompanyName() {
         return companyName;
     }
@@ -30,19 +30,19 @@ public class EmploymentObject {
         this.employmentRole = employmentRole;
     }
 
-    public javax.xml.datatype.XMLGregorianCalendar getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(javax.xml.datatype.XMLGregorianCalendar startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public javax.xml.datatype.XMLGregorianCalendar getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(javax.xml.datatype.XMLGregorianCalendar endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 }

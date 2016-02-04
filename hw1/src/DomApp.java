@@ -124,23 +124,8 @@ public class DomApp {
                     employmentObject.setCompanyName(workhistory.getElementsByTagName(prefix+"companyName").item(0).getFirstChild().getNodeValue());
                     employmentObject.setOrgNumber(workhistory.getElementsByTagName(prefix+"orgNumber").item(0).getFirstChild().getNodeValue());
                     employmentObject.setEmploymentRole(workhistory.getElementsByTagName(prefix+"employmentRole").item(0).getFirstChild().getNodeValue());
-
-                    Element e = person.getElementsByTagName(prefix+"startDate").item(0);
-                    javax.xml.datatype.XMLGregorianCalendar startDate = new javax.xml.datatype.XMLGregorianCalendar();
-                    startDate.setYear(e.getElementsByTagName(prefix+"year").item(0).getFirstChild().getNodeValue());
-                    startDate.setMonth(e.getElementsByTagName(prefix+"month").item(0).getFirstChild().getNodeValue());
-                    startDate.setDay(e.getElementsByTagName(prefix+"day").item(0).getFirstChild().getNodeValue());
-                    employmentObject.setStartDate(startDate);
-
-                    Element e = person.getElementsByTagName(prefix+"endDate").item(0);
-                    javax.xml.datatype.XMLGregorianCalendar endDate = new javax.xml.datatype.XMLGregorianCalendar();
-                    endDate.setYear(e.getElementsByTagName(prefix+"year").item(0).getFirstChild().getNodeValue());
-                    endDate.setMonth(e.getElementsByTagName(prefix+"month").item(0).getFirstChild().getNodeValue());
-                    endDate.setDay(e.getElementsByTagName(prefix+"day").item(0).getFirstChild().getNodeValue());
-                    employmentObject.setStartDate(endDate);
-
+                    employmentObject.setStartDate(workhistory.getElementsByTagName(prefix+"startDate").item(0).getFirstChild().getNodeValue());
                     employmentObject.setEndDate(workhistory.getElementsByTagName(prefix+"endDate").item(0).getFirstChild().getNodeValue());
-
                     history.add(employmentObject);
                 }
                 p.addWorkhistory(history);

@@ -10,18 +10,18 @@
 <transcript:courseName>Webservices</transcript:courseName>
 <transcript:courseNumber>ID2208</transcript:courseNumber>
 <transcript:degree>5</transcript:degree>
-<transcript:startDate>2016-01-18</transcript:startDate>
-<transcript:finishedDate>2016-03-15</transcript:finishedDate>
+<transcript:startDate>20150116</transcript:startDate>
+<transcript:finishedDate>20160318</transcript:finishedDate>
 </transcript:course>
 <transcript:course>
 <transcript:courseName>Distributed Systems, Advanced Course</transcript:courseName>
 <transcript:courseNumber>ID2203</transcript:courseNumber>
 <transcript:degree>4</transcript:degree>
-<transcript:startDate>2016-01-18</transcript:startDate>
-<transcript:finishedDate>2016-03-15</transcript:finishedDate>
+<transcript:startDate>20160118</transcript:startDate>
+<transcript:finishedDate>20160315</transcript:finishedDate>
 </transcript:course>
-<transcript:startDate>2015-08-30</transcript:startDate>
-<transcript:finishDate>2017-06-01</transcript:finishDate>
+<transcript:startDate>20150830</transcript:startDate>
+<transcript:finishDate>20170601</transcript:finishDate>
 </transcript:program>
 </transcript:person>
 </transcript:persontranscript>

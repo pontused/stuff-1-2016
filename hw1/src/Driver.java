@@ -1,7 +1,7 @@
 import com.applicationschema.Application;
-import com.applicationschema.CourseTranscript;
-import com.applicationschema.Schoolprogram;
-import com.applicationschema.Workhistorytype;
+
+
+
 import dataContainers.*;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -47,58 +47,82 @@ public class Driver {
         // JAXB parsing
         JAXBParser jaxbp = new JAXBParser("src/xml/shortcv.xml");
         ssn = jaxbp.start(ap);
-
-        // XSL Transformation
-        XslTransformer xt = new XslTransformer("src/TranscriptTransformation.xsl","src/xml/Transcript.xml","src/xml/Transcript_output.xml");
-        xt.start();
+        ap.setSsn(ssn);
+        // SAX parsing
+        companyRecords = sa.companyInfoParser("src/xml/company.xml");
 
         // DOM parsing
         educationRecords = da.parseEducationRecords(factory, "src/xml/transcript.xml", "schemas/persontranscript.xsd");
         employmentRecords = da.parseEmploymentRecords(factory, "src/xml/employment.xml", "schemas/personemployments.xsd");
-        Workhistorytype wh;
+        Application.Workhistory wh;
         for (Person p :employmentRecords) {
             if(p.getSSN().equals(ssn)) {
                 System.out.println("Found an apropriet employment");
                 for (EmploymentObject eo : p.getWorkhistory()) {
-                    wh = new Workhistorytype();
+                    wh = new Application.Workhistory();
                     wh.setCompanyName(eo.getCompanyName());
                     wh.setOrgNumber(eo.getOrgNumber());
                     wh.setEmploymentRole(eo.getEmploymentRole());
                     wh.setStartDate(eo.getStartDate());
                     wh.setEndDate(eo.getEndDate());
+                    ap.getWorkhistory().add(wh);
                 }
             }
         }
-        Schoolprogram sp;
-        CourseTranscript ct;
+        Application.Program sp;
+        Application.Program.Course ct;
         for (Person p :educationRecords) {
             if(p.getSSN().equals(ssn)) {
                 System.out.println("Found an apropriet education");
                 for (EducationObject edo : p.getEducationList()) {
-                    sp = new Schoolprogram();
+                    sp = new Application.Program();
                     sp.setProgramName(edo.getProgramName());
                     sp.setUniversityName(edo.getUniversityName());
                     for (CourseItem ci :edo.getCourseList()) {
-                        ct = new CourseTranscript();
+                        ct =  new Application.Program.Course();
                         ct.setCourseName(ci.getCourseName());
                         ct.setCourseNumber(ci.getCourseNumber());
                         ct.setDegree(ci.getDegree());
                         ct.setStartDate(ci.getStartDate());
                         ct.setFinishedDate(ci.getFinishedDate());
+                        sp.getCourse().add(ct);
                     }
+                    ap.getProgram().add(sp);
                 }
             }
         }
-        /*
-        // SAX parsing
-        companyRecords = sa.companyInfoParser("src/xml/company.xml");
-        */
+
+        System.out.println(ap.getFirstname() + " " + ap.getLastname());
+        System.out.println(ap.getSsn());
+        System.out.println(ap.getLetter());
+
+        for (Application.Program sp2 :ap.getProgram()) {
+            System.out.println(sp2.getUniversityName());
+            System.out.println(sp2.getProgramName());
+            for (Application.Program.Course ci2:sp2.getCourse()) {
+                System.out.println(ci2.getCourseName());
+                System.out.println(ci2.getCourseNumber());
+                System.out.println(ci2.getDegree());
+                System.out.println(ci2.getStartDate());
+                System.out.println(ci2.getFinishedDate());
+            }
+        }
+        for (Application.Workhistory wh2 :ap.getWorkhistory()) {
+            System.out.println(wh2.getCompanyName());
+            System.out.println(wh2.getOrgNumber());
+            System.out.println(wh2.getEmploymentRole());
+            System.out.println(wh2.getStartDate());
+            System.out.println(wh2.getEndDate());
+        }
+
+        // XSL Transformation
+        XslTransformer xt = new XslTransformer("src/TranscriptTransformation.xsl","src/xml/Transcript.xml","src/xml/Transcript_output.xml");
+        xt.start();
 
 
-
-
-        // Build XML
-
+        // JAXB Marshal to XML
+        JAXBMarshaler jaxbm = new JAXBMarshaler();
+        jaxbm.start(ap);
 
 
 
