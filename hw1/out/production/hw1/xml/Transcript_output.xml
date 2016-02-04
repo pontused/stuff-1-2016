@@ -2,6 +2,7 @@
 <transcript:person>
 <transcript:firstname>Peter</transcript:firstname>
 <transcript:lastname>Ledberg</transcript:lastname>
+<transcript:gpa>4.5</transcript:gpa>
 <transcript:program>
 <transcript:programName>Distributed systems</transcript:programName>
 <transcript:universityName>KTH</transcript:universityName>
@@ -22,6 +23,5 @@
 <transcript:startDate>2015-08-30</transcript:startDate>
 <transcript:finishDate>2017-06-01</transcript:finishDate>
 </transcript:program>
-<gpa>4.5</gpa>
 </transcript:person>
 </transcript:persontranscript>
