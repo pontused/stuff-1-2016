@@ -13,10 +13,6 @@ public class XslTransformer {
     Source ss;
     FileOutputStream fos;
 
-    public static void main(String[] args){
-        XslTransformer xsltr = new XslTransformer("src/TranscriptTransformation.xsl","src/xml/Transcript.xml","src/xml/Transcript_output.xml");
-        xsltr.start();
-    }
 
     public XslTransformer(String transformation, String input, String output){
         xslSource = new StreamSource(transformation);

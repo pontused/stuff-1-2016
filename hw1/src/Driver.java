@@ -115,15 +115,14 @@ public class Driver {
             System.out.println(wh2.getEndDate());
         }
 
-        // XSL Transformation
-        XslTransformer xt = new XslTransformer("src/TranscriptTransformation.xsl","src/xml/Transcript.xml","src/xml/Transcript_output.xml");
-        xt.start();
-
 
         // JAXB Marshal to XML
         JAXBMarshaler jaxbm = new JAXBMarshaler();
         jaxbm.start(ap);
 
+        // XSL Transformation
+        XslTransformer xt = new XslTransformer("src/xml/transformations/Transformation.xsl","src/xml/application.xml","src/xml/application_transformation.xml");
+        xt.start();
 
 
     }
