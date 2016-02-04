@@ -37,14 +37,14 @@ public class Driver {
         xt.start();
 
         DomApp da = new DomApp();
+        SaxApp sa = new SaxApp();
         // DOM parsing
         educationRecords = da.parseEducationRecords(factory, "src/xml/Transcript_output.xml", "schemas/TranscriptTransformationOutput.xsd");
+        employmentRecords = da.parseEmploymentRecords(factory, "src/xml/employment.xml", "schemas/personemployments.xsd");
 
         // SAX parsing
-        //companyObjects;
-        companyRecords = da.parseCompanyRecords("src/xml/company.xml");
+        companyRecords = sa.companyInfoParser("src/xml/company.xml");
 
-        employmentRecords = da.parseEmploymentRecords(factory, "src/xml/employment.xml", "schemas/personemployments.xsd");
 
         // JAXB parsing
         JAXBParser jaxbp = new JAXBParser("src/xml/shortcv.xml");

@@ -25,9 +25,6 @@ public class DomApp {
         DomApp domApp = new DomApp();
     }
     public DomApp(){
-        employmentRecords = new ArrayList<Person>();
-        educationRecords = new ArrayList<Person>();
-        companyRecords = new ArrayList<CompanyInfo>();
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         factory.setValidating(true);
@@ -36,197 +33,7 @@ public class DomApp {
 
         factory.setAttribute("http://java.sun.com/xml/jaxp/properties/schemaLanguage","http://www.w3.org/2001/XMLSchema");
 
-        // XSL Transformation
-        XslTransformer xt = new XslTransformer("src/TranscriptTransformation.xsl","src/xml/Transcript.xml","src/xml/Transcript_output.xml");
-        xt.start();
 
-        // DOM parsing
-        educationRecords = parseEducationRecords(factory, "src/xml/Transcript_output.xml", "schemas/TranscriptTranOutput.xsd");
-
-        // SAX parsing
-        //companyObjects;
-        companyRecords = parseCompanyRecords("src/xml/company.xml");
-
-        employmentRecords = parseEmploymentRecords(factory, "src/xml/employment.xml", "schemas/personemployments.xsd");
-
-        // JAXB parsing
-        JAXBParser jaxbp = new JAXBParser("src/xml/shortcv.xml");
-        jaxbp.start();
-
-
-
-        Person cv = parseCV(factory);
-
-
-
-        Document output = buildApplicantProfile(factory,cv,employmentRecords,educationRecords,companyRecords);
-
-        writeApplicantProfile(output, "src/xml/applicantProfile-DOM.xml");
-    }
-    private void writeApplicantProfile(Document document, String fileName){
-
-
-        TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        //get transformer to fill XML output file
-        Transformer transformer = null;
-        try {
-            transformer = transformerFactory.newTransformer();
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-        } catch (TransformerConfigurationException ex) {
-            Logger.getLogger(DomApp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //generate DOM tree source from the output document
-        DOMSource source = new DOMSource(document);
-        //get stream to fill the output file
-        StreamResult result = new StreamResult(new File(fileName));
-        //fill the XML output file using the stream with the DOM tree
-        try {
-            transformer.transform(source, result);
-        } catch (TransformerException ex) {
-            Logger.getLogger(DomApp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-    private Document buildApplicantProfile(DocumentBuilderFactory factory,Person cv,ArrayList<Person> employments,ArrayList<Person> educations, ArrayList<CompanyInfo> companyRecords){
-
-        for (Person p : employments){
-            if (p.getSSN().equals(cv.getSSN())){
-                cv.addWorkhistory(p.getWorkhistory());
-            }
-        }
-        for (Person p : educations){
-            if (p.getSSN().equals(cv.getSSN())){
-                cv.addEducationList(p.getEducationList());
-            }
-        }
-        Document document = null;
-        try{
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            document = builder.newDocument();
-            Element rootElement = document.createElement("applicatprofile");
-            document.appendChild(rootElement);
-
-            Element firstname = document.createElement("firstname");
-            firstname.appendChild(document.createTextNode(cv.getFirstname()));
-            rootElement.appendChild(firstname);
-
-            Element lastname = document.createElement("lastname");
-            lastname.appendChild(document.createTextNode(cv.getLastname()));
-            rootElement.appendChild(lastname);
-
-            Element ssn = document.createElement("ssn");
-            ssn.appendChild(document.createTextNode(cv.getSSN()));
-            rootElement.appendChild(ssn);
-
-            for (EducationObject eo : cv.getEducationList()){
-                Element program = document.createElement("program");
-
-                Element programName = document.createElement("programName");
-                programName.appendChild(document.createTextNode(eo.getProgramName()));
-                program.appendChild(programName);
-
-                Element universityName = document.createElement("universityName");
-                universityName.appendChild(document.createTextNode(eo.getUniversityName()));
-                program.appendChild(universityName);
-
-
-                for (CourseItem courseItem: eo.getCourseList()){
-                    Element course = document.createElement("course");
-
-                    Element courseName = document.createElement("courseName");
-                    courseName.appendChild(document.createTextNode(courseItem.getCourseName()));
-                    course.appendChild(courseName);
-
-                    Element courseNumber = document.createElement("courseNumber");
-                    courseNumber.appendChild(document.createTextNode(courseItem.getCourseNumber()));
-                    course.appendChild(courseNumber);
-
-                    Element degree = document.createElement("degree");
-                    degree.appendChild(document.createTextNode(courseItem.getDegree()));
-                    course.appendChild(degree);
-
-                    Element startDate = document.createElement("startDate");
-                    startDate.appendChild(document.createTextNode(courseItem.getStartDate()));
-                    course.appendChild(startDate);
-
-                    Element finishedDate = document.createElement("finishedDate");
-                    finishedDate.appendChild(document.createTextNode(courseItem.getFinishedDate()));
-                    course.appendChild(finishedDate);
-
-                    program.appendChild(course);
-                }
-                rootElement.appendChild(program);
-            }
-            for (EmploymentObject eo : cv.getWorkhistory()) {
-                Element workhistory = document.createElement("workhistory");
-
-                Element companyName = document.createElement("companyName");
-                companyName.appendChild(document.createTextNode(eo.getCompanyName()));
-                workhistory.appendChild(companyName);
-
-                Element orgNumber = document.createElement("orgNumber");
-                orgNumber.appendChild(document.createTextNode(eo.getOrgNumber()));
-                workhistory.appendChild(orgNumber);
-
-                Element employmentRole = document.createElement("employmentRole");
-                employmentRole.appendChild(document.createTextNode(eo.getEmploymentRole()));
-                workhistory.appendChild(employmentRole);
-
-
-                Element startDate = document.createElement("startDate");
-                startDate.appendChild(document.createTextNode(eo.getStartDate()));
-                workhistory.appendChild(startDate);
-
-                Element endDate = document.createElement("endDate");
-                endDate.appendChild(document.createTextNode(eo.getEndDate()));
-                workhistory.appendChild(endDate);
-
-                rootElement.appendChild(workhistory);
-            }
-
-
-
-
-        }catch (ParserConfigurationException e){
-
-        }
-
-
-
-
-
-        return document;
-    }
-
-    public Person parseCV(DocumentBuilderFactory factory){
-        Person person = new Person();
-
-        factory.setAttribute( "http://java.sun.com/xml/jaxp/properties/schemaSource", "schemas/shortcv.xsd");
-        try{
-            //Get a DocumentBuilder (parser) object
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            //Parse the XML input file to create a document object that represent the input XML file.
-            Document document = builder.parse(new File("src/xml/shortcv.xml"));
-            String prefix = document.getFirstChild().getPrefix();
-            if (!prefix.equals(""))
-                prefix += ":";
-
-            NodeList cv = document.getElementsByTagName(prefix+"cv");
-
-            if (cv.getLength() == 1){
-                Element root = (Element) cv.item(0);
-                person.setFirstname(root.getElementsByTagName(prefix+"firstname").item(0).getFirstChild().getNodeValue());
-                person.setLastname(root.getElementsByTagName(prefix+"lastname").item(0).getFirstChild().getNodeValue());
-                person.setSSN(root.getElementsByTagName(prefix+"ssn").item(0).getFirstChild().getNodeValue());
-            }
-        }catch (ParserConfigurationException e){
-
-        }catch (IOException e){
-
-        }catch (SAXException e){
-
-        }
-        return person;
     }
     public ArrayList<Person> parseEducationRecords(DocumentBuilderFactory factory, String xmlFile, String schema) {
 
@@ -288,24 +95,6 @@ public class DomApp {
         return records;
     }
 
-    public ArrayList<CompanyInfo> parseCompanyRecords(String fileName){
-        ArrayList<CompanyInfo> companyInfos = new ArrayList<CompanyInfo>();
-
-        try {
-            File inputFile = new File(fileName);
-            SAXParserFactory factory = SAXParserFactory.newInstance();
-            SAXParser saxParser = factory.newSAXParser();
-            CompanyInfoContainer container = new CompanyInfoContainer();
-            CompanyInfoHandler companyInfoHandler = new CompanyInfoHandler(container);
-            saxParser.parse(inputFile, companyInfoHandler);
-            companyInfos = container.getCompanies();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return companyInfos;
-    }
     public ArrayList<Person> parseEmploymentRecords(DocumentBuilderFactory factory, String xmlFile, String schema){
 
         factory.setAttribute( "http://java.sun.com/xml/jaxp/properties/schemaSource", schema);
@@ -351,11 +140,6 @@ public class DomApp {
 
         }
         return records;
-    }
-    private void getChildObject(NodeList nodes){
-        for (int i = 0; i<nodes.getLength();i++){
-            System.out.println(nodes.item(i).getLocalName()+" "+ nodes.item(i).getChildNodes().item(0).getNodeValue());
-        }
     }
 
 }
