@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
-	xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
-	xmlns:transcript ="http://www.persontranscript.com"
-	xsi:schemaLocation='http://www.persontranscript.com schemas/TranscriptTransformationOutput.xsd'>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0" xmlns:transcript ='http://www.persontranscript.com'>
     <xsl:template match="/">
 		<xsl:element name="transcript:persontranscript">
 			<xsl:element name="transcript:person">
