@@ -32,12 +32,15 @@ public class Driver {
 
         factory.setAttribute("http://java.sun.com/xml/jaxp/properties/schemaLanguage","http://www.w3.org/2001/XMLSchema");
 
+
+
+        DomApp da = new DomApp();
+        SaxApp sa = new SaxApp();
+
         // XSL Transformation
         XslTransformer xt = new XslTransformer("src/TranscriptTransformation.xsl","src/xml/Transcript.xml","src/xml/Transcript_output.xml");
         xt.start();
 
-        DomApp da = new DomApp();
-        SaxApp sa = new SaxApp();
         // DOM parsing
         educationRecords = da.parseEducationRecords(factory, "src/xml/Transcript_output.xml", "schemas/TranscriptTransformationOutput.xsd");
         employmentRecords = da.parseEmploymentRecords(factory, "src/xml/employment.xml", "schemas/personemployments.xsd");
@@ -45,10 +48,14 @@ public class Driver {
         // SAX parsing
         companyRecords = sa.companyInfoParser("src/xml/company.xml");
 
-
         // JAXB parsing
         JAXBParser jaxbp = new JAXBParser("src/xml/shortcv.xml");
         jaxbp.start();
+
+        // Build XML
+
+
+
 
     }
 }
