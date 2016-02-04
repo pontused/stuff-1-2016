@@ -41,7 +41,7 @@ public class DomApp {
         xt.start();
 
         // DOM parsing
-        educationRecords = parseEducationRecords(factory, "src/xml/transcript.xml" , "schemas/persontranscript.xsd");
+        educationRecords = parseEducationRecords(factory, "src/xml/Transcript_output.xml", "schemas/TranscriptTranOutput.xsd");
 
         // SAX parsing
         //companyObjects;
@@ -198,7 +198,7 @@ public class DomApp {
         return document;
     }
 
-    private Person parseCV(DocumentBuilderFactory factory){
+    public Person parseCV(DocumentBuilderFactory factory){
         Person person = new Person();
 
         factory.setAttribute( "http://java.sun.com/xml/jaxp/properties/schemaSource", "schemas/shortcv.xsd");
@@ -228,7 +228,7 @@ public class DomApp {
         }
         return person;
     }
-    private ArrayList<Person> parseEducationRecords(DocumentBuilderFactory factory, String xmlFile, String schema) {
+    public ArrayList<Person> parseEducationRecords(DocumentBuilderFactory factory, String xmlFile, String schema) {
 
         factory.setAttribute( "http://java.sun.com/xml/jaxp/properties/schemaSource", schema);
         ArrayList<Person> records = new ArrayList<Person>();
@@ -288,7 +288,7 @@ public class DomApp {
         return records;
     }
 
-    private ArrayList<CompanyInfo> parseCompanyRecords(String fileName){
+    public ArrayList<CompanyInfo> parseCompanyRecords(String fileName){
         ArrayList<CompanyInfo> companyInfos = new ArrayList<CompanyInfo>();
 
         try {
@@ -306,7 +306,7 @@ public class DomApp {
 
         return companyInfos;
     }
-    private ArrayList<Person> parseEmploymentRecords(DocumentBuilderFactory factory, String xmlFile, String schema){
+    public ArrayList<Person> parseEmploymentRecords(DocumentBuilderFactory factory, String xmlFile, String schema){
 
         factory.setAttribute( "http://java.sun.com/xml/jaxp/properties/schemaSource", schema);
         ArrayList<Person> records = new ArrayList<Person>();
