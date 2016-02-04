@@ -1,3 +1,4 @@
+import com.applicationschema.Application;
 import com.shortcv.Cv;
 import com.shortcv.CvInfo;
 
@@ -25,11 +26,11 @@ public class JAXBParser {
 
     public static void main(String[] args){
         JAXBParser jaxbp = new JAXBParser("src/xml/shortcv.xml");
-        jaxbp.start();
+        jaxbp.start(new Application());
     }
 
-    public void start(){
-
+    public String start(Application ap){
+        String ssn = "null";
         try{
             final JAXBContext jaxbContext = JAXBContext.newInstance(com.shortcv.ObjectFactory.class);
 
@@ -37,15 +38,15 @@ public class JAXBParser {
             JAXBElement<Cv> jaxbel =  (JAXBElement<Cv>)jaxbUnmarshaller.unmarshal(fis);
 
             for (CvInfo cv : jaxbel.getValue().getCv()){
-                System.out.println(cv.getFirstname());
-                System.out.println(cv.getLastname());
-                System.out.println(cv.getSsn());
-                System.out.println(cv.getGender());
+                ap.setFirstname(cv.getFirstname());
+                ap.setLastname(cv.getLastname());
+                ap.setLetter(cv.getLetter());
+                ssn = cv.getSsn();
             }
 
         }catch(JAXBException e) {
             System.out.print("JAXBException: " + e.getMessage());
         }
-
+        return ssn;
     }
 }

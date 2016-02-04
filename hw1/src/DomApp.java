@@ -72,7 +72,7 @@ public class DomApp {
                         CourseItem courseItem = new CourseItem();
                         courseItem.setCourseName(course.getElementsByTagName(prefix+"courseName").item(0).getFirstChild().getNodeValue());
                         courseItem.setCourseNumber(course.getElementsByTagName(prefix+"courseNumber").item(0).getFirstChild().getNodeValue());
-                        courseItem.setDegree(course.getElementsByTagName(prefix+"degree").item(0).getFirstChild().getNodeValue());
+                        courseItem.setDegree( new java.math.BigDecimal(course.getElementsByTagName(prefix+"degree").item(0).getFirstChild().getNodeValue()));
                         courseItem.setStartDate(course.getElementsByTagName(prefix+"startDate").item(0).getFirstChild().getNodeValue());
                         courseItem.setFinishedDate(course.getElementsByTagName(prefix+"finishedDate").item(0).getFirstChild().getNodeValue());
                         courseList.add(courseItem);

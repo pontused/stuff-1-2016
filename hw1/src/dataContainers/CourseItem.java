@@ -5,8 +5,9 @@ package dataContainers;
  */
 public class CourseItem {
 
-    private String courseName,courseNumber,degree,startDate,finishedDate;
-
+    private String courseName,courseNumber;
+    private javax.xml.datatype.XMLGregorianCalendar startDate,finishedDate;
+    private java.math.BigDecimal degree;
     public String getCourseName() {
         return courseName;
     }
@@ -23,27 +24,27 @@ public class CourseItem {
         this.courseNumber = courseNumber;
     }
 
-    public String getDegree() {
+    public java.math.BigDecimal getDegree() {
         return degree;
     }
 
-    public void setDegree(String degree) {
+    public void setDegree(java.math.BigDecimal degree) {
         this.degree = degree;
     }
 
-    public String getStartDate() {
+    public javax.xml.datatype.XMLGregorianCalendar getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(javax.xml.datatype.XMLGregorianCalendar startDate) {
         this.startDate = startDate;
     }
 
-    public String getFinishedDate() {
+    public javax.xml.datatype.XMLGregorianCalendar getFinishedDate() {
         return finishedDate;
     }
 
-    public void setFinishedDate(String finishedDate) {
+    public void setFinishedDate(javax.xml.datatype.XMLGregorianCalendar finishedDate) {
         this.finishedDate = finishedDate;
     }
 }
