@@ -30,10 +30,16 @@
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:element>
-            <xsd:element name="ssn" >
+            <xsd:element name="ssn" minOccurs="0" maxOccurs="1" >
                 <xsd:simpleType>
                     <xsd:restriction base="xsd:string">
                         <xsd:pattern value="[0-9]{10}"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="gpa" minOccurs="0" maxOccurs="1" >
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:decimal">
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:element>

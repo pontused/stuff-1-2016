@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="http://www.persontranscript.com"
-           xmlns="http://www.persontranscript.com"
+           targetNamespace="http://www.TranscriptTransformationOutput.com"
+           xmlns="http://www.TranscriptTransformationOutput.com"
             elementFormDefault="qualified">
 
 
@@ -30,7 +30,13 @@
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:element>
-			<!--
+            <xsd:element name="gpa">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:decimal">
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <!--
             <xsd:element name="ssn" >
                 <xsd:simpleType>
                     <xsd:restriction base="xsd:string">
@@ -38,17 +44,8 @@
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:element>
-			-->
+            -->
             <xsd:element name="program" type="schoolprogram" minOccurs="0" maxOccurs="unbounded"/>
-			<!--
-			degree måste vara siffror inte bokstäver
-			<xsl:element name="gpa">
-				<xsd:simpleType>
-                    <xsd:restriction base="xsd:decimal">
-                    </xsd:restriction>
-                </xsd:simpleType>
-			</xsl:element> 
-			-->
         </xsd:sequence>
     </xsd:complexType>
 
