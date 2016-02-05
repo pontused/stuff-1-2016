@@ -25,14 +25,14 @@ public class DomApp {
         DomApp domApp = new DomApp();
     }
     public DomApp(){
-
+/*
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         factory.setValidating(true);
         factory.setNamespaceAware(true);
         factory.setIgnoringElementContentWhitespace(true);
 
         factory.setAttribute("http://java.sun.com/xml/jaxp/properties/schemaLanguage","http://www.w3.org/2001/XMLSchema");
-
+*/
 
     }
     public ArrayList<Person> parseEducationRecords(DocumentBuilderFactory factory, String xmlFile, String schema) {

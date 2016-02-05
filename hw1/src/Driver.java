@@ -37,12 +37,9 @@ public class Driver {
 
         factory.setAttribute("http://java.sun.com/xml/jaxp/properties/schemaLanguage","http://www.w3.org/2001/XMLSchema");
 
-
-
         DomApp da = new DomApp();
         SaxApp sa = new SaxApp();
         Application ap = new Application();
-
 
         // JAXB parsing
         JAXBParser jaxbp = new JAXBParser("src/xml/shortcv.xml");
@@ -57,7 +54,6 @@ public class Driver {
         Application.Workhistory wh;
         for (Person p :employmentRecords) {
             if(p.getSSN().equals(ssn)) {
-                System.out.println("Found an apropriet employment");
                 for (EmploymentObject eo : p.getWorkhistory()) {
                     wh = new Application.Workhistory();
                     wh.setCompanyName(eo.getCompanyName());
@@ -73,7 +69,6 @@ public class Driver {
         Application.Program.Course ct;
         for (Person p :educationRecords) {
             if(p.getSSN().equals(ssn)) {
-                System.out.println("Found an apropriet education");
                 for (EducationObject edo : p.getEducationList()) {
                     sp = new Application.Program();
                     sp.setProgramName(edo.getProgramName());
@@ -92,28 +87,7 @@ public class Driver {
             }
         }
 
-        System.out.println(ap.getFirstname() + " " + ap.getLastname());
-        System.out.println(ap.getSsn());
-        System.out.println(ap.getLetter());
 
-        for (Application.Program sp2 :ap.getProgram()) {
-            System.out.println(sp2.getUniversityName());
-            System.out.println(sp2.getProgramName());
-            for (Application.Program.Course ci2:sp2.getCourse()) {
-                System.out.println(ci2.getCourseName());
-                System.out.println(ci2.getCourseNumber());
-                System.out.println(ci2.getDegree());
-                System.out.println(ci2.getStartDate());
-                System.out.println(ci2.getFinishedDate());
-            }
-        }
-        for (Application.Workhistory wh2 :ap.getWorkhistory()) {
-            System.out.println(wh2.getCompanyName());
-            System.out.println(wh2.getOrgNumber());
-            System.out.println(wh2.getEmploymentRole());
-            System.out.println(wh2.getStartDate());
-            System.out.println(wh2.getEndDate());
-        }
 
 
         // JAXB Marshal to XML

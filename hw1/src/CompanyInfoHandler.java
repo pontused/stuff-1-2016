@@ -27,7 +27,7 @@ public class CompanyInfoHandler extends DefaultHandler {
 
 
         if (qName.equals("company:company")){
-            System.out.println("create");
+            //System.out.println("create");
             companies.createTemoObject();
         }
     }
@@ -48,7 +48,7 @@ public class CompanyInfoHandler extends DefaultHandler {
             companies.writeTempObject();
         }
         else if(qName.equals("company:companyName")){
-            System.out.println(companies.getTempValue());
+            //System.out.println(companies.getTempValue());
             companies.setTempCompanyName(companies.getTempValue());
         }
         else if(qName.equals("company:orgNumber")){
